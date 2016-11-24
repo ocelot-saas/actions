@@ -1,0 +1,40 @@
+language: python
+
+python:
+- "3.5"
+
+cache: pip
+
+addons:
+  apt:
+    packages:
+    - libpq-dev
+
+env:
+  global:
+  - ENV=TEST
+  - ADDRESS=0.0.0.0
+  - PORT=10000
+  - MASTER_DOMAIN=ocelot.com
+  - MIGRATIONS_PATH=migrations
+  - DATABASE_URL=null
+  - CLIENTS=null
+  - PYTHONPATH=$PYTHONPATH:$TRAVIS_BUILD_DIR/src
+
+install:
+- pip install -r requirements.txt
+
+script:
+- coverage run --source=actions --module unittest discover --verbose
+
+after_success:
+- coveralls
+
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: bin/togemfury.sh
+- provider: heroku
+  app: ocelot-saas-actions
+  api_key:
+    secure: "kXHxDSJKtjc1oDI0ui3X7HyiFyTeRlu+otQQx/ALh4xEWGTNQNd+n83mTtzmNBpFk13mtbmdfv6t/VtayAJnYu402C3fA6Qsek2+xckMFVBxYJAxubfUmmS4BffVIhbdIyHE+qSzXGptzhZ4PCUzbSLC+2eykt1mW3BvEtLpAKAYveyAFuNlyZkFN6eVSbSv9RkpjjNvZp6eRf01jdujTcHVXAWi+Ux7pHSET4YSegL6BeKKskl0dK9XcXvcIPoKyIe3UYfq8+CK4pMsAe3DsP9RaO3UvTAuV/objgF+RmcUjZ0z4YYhwVWKnGKlaVkWJD1hw/4ZsnRfrfjfyfIs5Xv4HFsb+pxT6Ki5q/ScfXHRoxvZcblujtSfV4hWXZaujxycfZdFTYPe5oJokvXY34fwBTBqFbyJpLXPGHxn+4YYQ7GC6lLh4m43rqT2Ndu4Dx5xfZbBSTjjYSstw/vmR/RrQWkIdmqojy6b5iEBuylshYtr1VVptkGDR1Z+YChsL+d7CfFVaNHZ8QCCwywzKdDKKh0NfZjpzpXOAezN4cfQs1A4CQxigllop+5TNEVOul2OUM290wTZNogxOOyT0Tqohe4vAxfknq6XPei5c4JTR4jKZh4+t9CKHDtYhWdGgGpX+vBmT0Dxnyub+AElrPE+2OY6TkR0vyoCD0tQdos="
