@@ -44,7 +44,7 @@ ENV PORT 10000
 ENV MASTER_DOMAIN ocelot.com
 ENV MIGRATIONS_PATH /ocelot-saas/pack/migrations
 ENV DATABASE_URL postgresql://ocelot-saas:ocelot-saas@ocelot-saas-postgres:5432/ocelot-saas
-ENV CLIENTS localhost:10000
+ENV CLIENTS localhost:10100
 ENV PYTHONPATH /ocelot-saas/pack/src
 
 RUN chown -R ocelot-saas:ocelot-saas /ocelot-saas
