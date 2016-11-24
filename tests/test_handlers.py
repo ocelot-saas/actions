@@ -3,7 +3,7 @@ import unittest
 import falcon.testing
 
 
-class HelloResourceTest(falcon.testing.TestCases):
+class HelloResourceTest(falcon.testing.TestCase):
     def test_get(self):
         """GET /hello works."""
         pass
