@@ -16,7 +16,7 @@ def readme():
 
 setup(
     name='actions',
-    version='0.0.1',
+    version='0.0.2',
     description='The actions service for Ocelot, as a Python package.',
     long_description=readme(),
     keywords='ocelot-saas actions service rest api',
