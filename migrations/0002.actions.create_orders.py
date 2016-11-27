@@ -7,7 +7,7 @@ __depends__ = ['0001.actions.create_schema']
 
 
 step("""
-CREATE TABLE actions.orders (
+CREATE TABLE actions.order (
     id SERIAL,
     time_ordered TIMESTAMP NOT NULL,
     org_ext_id INTEGER NOT NULL,
@@ -17,5 +17,5 @@ CREATE TABLE actions.orders (
     delivery_notes TEXT NULL,
     PRIMARY KEY (id)
 );""", """
-DROP TABLE IF EXISTS actions.orders;
+DROP TABLE IF EXISTS actions.order;
 """)
