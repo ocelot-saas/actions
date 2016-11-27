@@ -25,8 +25,8 @@ the_clock = clock.Clock()
 sql_engine = sqlalchemy.create_engine(config.DATABASE_URL, echo=True)
 model = model.Model(the_clock, sql_engine)
 
-hello_resource = handlers.HelloResource(model)
-
+orders_resource = handlers.OrdersResource(model)
+order_resource = handlers.OrderResource(model)
 
 cors_middleware = falcon_cors.CORS(
     allow_origins_list=config.CLIENTS,
@@ -39,7 +39,8 @@ if config.ENV != 'PROD':
     app.add_error_handler(Exception, handler=debug_error_handler)
 
 
-app.add_route('/hello', hello_resource)
+app.add_route('/org/{restaurant_id}/orders', orders_resource)
+app.add_route('/org/{restaurant_id}/orders/{order_id}', order_resource)
 
 
 def main():

@@ -14,7 +14,7 @@ CREATE TABLE actions.orders (
     user_ext_id INTEGER NULL,
     items JSON NOT NULL,
     delivery_address TEXT NOT NULL,
-    delivery_notes TEXT NULL
+    delivery_notes TEXT NULL,
     PRIMARY KEY (id)
 );""", """
 DROP TABLE IF EXISTS actions.orders;
