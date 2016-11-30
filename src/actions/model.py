@@ -36,7 +36,7 @@ class Model(object):
         self._the_clock = the_clock
         self._sql_engine = sql_engine
 
-    def create_order(self, items, delivery_address, delivery_notes):
+    def create_order(self, org, restaurant, items, delivery_address, delivery_notes):
         pass
 
     def get_orders(self):

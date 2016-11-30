@@ -39,8 +39,8 @@ if config.ENV != 'PROD':
     app.add_error_handler(Exception, handler=debug_error_handler)
 
 
-app.add_route('/org/{restaurant_id}/orders', orders_resource)
-app.add_route('/org/{restaurant_id}/orders/{order_id}', order_resource)
+app.add_route('/org/{org_id}/restaurants/{restaurant_id}/orders', orders_resource)
+app.add_route('/org/{org_id}/restaurants/{restaurant_id}/orders/{order_id}', order_resource)
 
 
 def main():
